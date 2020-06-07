@@ -41,6 +41,8 @@ class FullImageViewController: UIViewController {
     
     view.backgroundColor = .white
     
+    print("test")
+    
     configureSubviews()
     configureConstraints()
   }
