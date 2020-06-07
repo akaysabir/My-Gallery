@@ -26,6 +26,7 @@ class FullImageViewController: UIViewController {
       myImageView.image = image
     }
   }
+  
   private lazy var myImageView: UIImageView = {
     let view = UIImageView()
     view.contentMode = UIView.ContentMode.scaleAspectFit
