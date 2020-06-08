@@ -12,25 +12,26 @@ class FullImageViewController: UIViewController {
 
   // MARK: - Properties
   
-  private lazy var myLabel: UILabel = {
+  private lazy var imageLabel: UILabel = {
     let myLabel = UILabel()
-    myLabel.textColor = .blue
+    myLabel.textColor = .gray
     myLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-    myLabel.text = "Hello, world!"
+    myLabel.text = "Image Label?"
     myLabel.translatesAutoresizingMaskIntoConstraints = false
     return myLabel
   }()
   
   var image: UIImage? {
     didSet {
-      myImageView.image = image
+      fullImageView.image = image
     }
   }
   
-  private lazy var myImageView: UIImageView = {
+  private lazy var fullImageView: UIImageView = {
     let view = UIImageView()
     view.contentMode = UIView.ContentMode.scaleAspectFit
     view.translatesAutoresizingMaskIntoConstraints = false
+    view.backgroundColor = .red
     return view
   }()
   
@@ -48,7 +49,7 @@ class FullImageViewController: UIViewController {
   // MARK: - Setup
   
   private func configureSubviews() {
-    [].forEach {
+    [imageLabel, fullImageView].forEach {
       view.addSubview($0)
     }
   }
@@ -56,7 +57,14 @@ class FullImageViewController: UIViewController {
   private func configureConstraints() {
     
     NSLayoutConstraint.activate([
+      imageLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24),
+      imageLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      imageLabel.heightAnchor.constraint(equalToConstant: 24),
       
+      fullImageView.topAnchor.constraint(equalTo: imageLabel.bottomAnchor, constant: 8),
+      fullImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
+      fullImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
+      fullImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8)
       ])
     
   }

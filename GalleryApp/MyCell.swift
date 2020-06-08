@@ -58,4 +58,5 @@ class MyCell: UICollectionViewCell {
   }
   
   // MARK: - Actions
+
 }

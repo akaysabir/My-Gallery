@@ -110,5 +110,13 @@ extension GalleryViewController: UICollectionViewDataSource {
 }
 
 extension GalleryViewController: UICollectionViewDelegate {
-
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
+    let fullImageVC = FullImageViewController()
+    
+    fullImageVC.image = data[indexPath.row]
+    
+    navigationController?.pushViewController(fullImageVC, animated: true)
+    
+  }
 }
