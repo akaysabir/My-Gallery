@@ -14,7 +14,7 @@ class ViewController: UIViewController {
   
   private lazy var myView: CardView = {
     let view = CardView()
-    view.backgroundColor = .green
+    view.backgroundColor = UIColor.white
     view.labelText = "Tap Button"
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
@@ -25,17 +25,17 @@ class ViewController: UIViewController {
     button.backgroundColor = .yellow
     button.setTitle("My Gallery", for: .normal)
     button.setTitleColor(.black, for: .normal)
-    button.setTitleColor(.red, for: .highlighted)
     button.addTarget(self, action: #selector(didTapMyButton), for: .touchUpInside)
     button.translatesAutoresizingMaskIntoConstraints = false
+    button.layer.cornerRadius = 25
     return button
   }()
   
   private lazy var myLabel: UILabel = {
     let myLabel = UILabel()
-    myLabel.textColor = .blue
+    myLabel.textColor = .white
     myLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-    myLabel.text = "Hello, world!"
+    myLabel.text = "Welcome to"
     myLabel.translatesAutoresizingMaskIntoConstraints = false
     return myLabel
   }()
@@ -45,7 +45,12 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    view.backgroundColor = .white
+    let gradientLayer = CAGradientLayer()
+    gradientLayer.frame = self.view.bounds
+    gradientLayer.colors = [UIColor.white.cgColor, UIColor.blue.cgColor]
+    self.view.layer.insertSublayer(gradientLayer, at: 0)
+
+    self.navigationController?.navigationBar.barTintColor = .black
     
     configureSubviews()
     configureConstraints()

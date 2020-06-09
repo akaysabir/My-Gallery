@@ -29,10 +29,9 @@ class CardView: UIView {
   
   private lazy var myButton: UIButton = {
     let button = UIButton()
-    button.backgroundColor = .yellow
+    button.backgroundColor = .blue
     button.setTitle("kek", for: .normal)
-    button.setTitleColor(.black, for: .normal)
-    button.setTitleColor(.red, for: .highlighted)
+    button.setTitleColor(.white, for: .highlighted)
     button.addTarget(self, action: #selector(didTapMyButton), for: .touchUpInside)
     button.translatesAutoresizingMaskIntoConstraints = false
     return button
@@ -68,8 +67,8 @@ class CardView: UIView {
       
       myButton.centerXAnchor.constraint(equalTo: centerXAnchor),
       myButton.topAnchor.constraint(equalTo: myLabel.bottomAnchor, constant: 8),
-      myButton.widthAnchor.constraint(equalToConstant: 50),
-      myButton.heightAnchor.constraint(equalToConstant: 24)
+      myButton.widthAnchor.constraint(equalToConstant: 80),
+      myButton.heightAnchor.constraint(equalToConstant: 40)
      
       ])
     

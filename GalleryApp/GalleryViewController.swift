@@ -22,7 +22,7 @@ class GalleryViewController: UIViewController {
   
   private lazy var myLabel: UILabel = {
     let myLabel = UILabel()
-    myLabel.textColor = .blue
+    myLabel.textColor = .white
     myLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
     myLabel.text = "My Gallery"
     myLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -36,7 +36,8 @@ class GalleryViewController: UIViewController {
     flowLayout.minimumInteritemSpacing = 20
     
     let view = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-    view.backgroundColor = .lightGray
+    
+    view.backgroundColor = UIColor.init(red: 100/255, green: 100/255, blue: 1, alpha: 0.9)
     view.dataSource = self
     view.delegate = self
     view.register(MyCell.self, forCellWithReuseIdentifier: MyCell.reuseId)
