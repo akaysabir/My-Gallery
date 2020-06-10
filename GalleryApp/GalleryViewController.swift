@@ -23,7 +23,7 @@ class GalleryViewController: UIViewController {
   private lazy var myLabel: UILabel = {
     let myLabel = UILabel()
     myLabel.textColor = .white
-    myLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+    myLabel.font = UIFont(name: "Copperplate", size: 24)
     myLabel.text = "My Gallery"
     myLabel.translatesAutoresizingMaskIntoConstraints = false
     return myLabel
@@ -37,7 +37,7 @@ class GalleryViewController: UIViewController {
     
     let view = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
     
-    view.backgroundColor = UIColor.init(red: 100/255, green: 100/255, blue: 1, alpha: 0.9)
+    view.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 1)
     view.dataSource = self
     view.delegate = self
     view.register(MyCell.self, forCellWithReuseIdentifier: MyCell.reuseId)
@@ -61,7 +61,7 @@ class GalleryViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    view.backgroundColor = .white
+    view.backgroundColor = .black
     
     configureSubviews()
     configureConstraints()
