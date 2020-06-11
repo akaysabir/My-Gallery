@@ -37,7 +37,6 @@ class GalleryViewController: UIViewController {
     
     let view = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
     
-    view.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 1)
     view.dataSource = self
     view.delegate = self
     view.register(MyCell.self, forCellWithReuseIdentifier: MyCell.reuseId)
@@ -50,10 +49,17 @@ class GalleryViewController: UIViewController {
     UIImage(named: "1"),
     UIImage(named: "2"),
     UIImage(named: "3"),
-    UIImage(named: "1"),
-    UIImage(named: "2"),
-    UIImage(named: "3"),
-    UIImage(named: "2")
+    UIImage(named: "4"),
+    UIImage(named: "5"),
+    UIImage(named: "6"),
+    UIImage(named: "7"),
+    UIImage(named: "8"),
+    UIImage(named: "9"),
+    UIImage(named: "10"),
+    UIImage(named: "11"),
+    UIImage(named: "12"),
+    UIImage(named: "13"),
+    UIImage(named: "14")
   ]
   
   // MARK: - Lifecycle
@@ -79,9 +85,9 @@ class GalleryViewController: UIViewController {
     
     NSLayoutConstraint.activate([
       myLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      myLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24),
+      myLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
       
-      myCollectionView.topAnchor.constraint(equalTo: myLabel.bottomAnchor, constant: 8),
+      myCollectionView.topAnchor.constraint(equalTo: myLabel.bottomAnchor, constant: 16),
       myCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
       myCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
       myCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8)
@@ -106,6 +112,8 @@ extension GalleryViewController: UICollectionViewDataSource {
     cell?.image = data[indexPath.row]
     return cell ?? UICollectionViewCell()
   }
+  
+  
   
   
 }

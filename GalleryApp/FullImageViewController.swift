@@ -14,9 +14,9 @@ class FullImageViewController: UIViewController {
   
   private lazy var imageLabel: UILabel = {
     let myLabel = UILabel()
-    myLabel.textColor = .gray
+    myLabel.textColor = .white
     myLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-    myLabel.text = "Image Label?"
+    myLabel.text = "Full image view"
     myLabel.translatesAutoresizingMaskIntoConstraints = false
     return myLabel
   }()
@@ -31,7 +31,7 @@ class FullImageViewController: UIViewController {
     let view = UIImageView()
     view.contentMode = UIView.ContentMode.scaleAspectFit
     view.translatesAutoresizingMaskIntoConstraints = false
-    view.backgroundColor = .red
+//    view.backgroundColor = .black
     return view
   }()
   
@@ -40,7 +40,7 @@ class FullImageViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    view.backgroundColor = .white
+    view.backgroundColor = .black
     
     configureSubviews()
     configureConstraints()

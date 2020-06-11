@@ -20,6 +20,7 @@ class MyCell: UICollectionViewCell {
   private lazy var myImageView: UIImageView = {
     let view = UIImageView()
     view.contentMode = UIView.ContentMode.scaleAspectFit
+    view.clipsToBounds = true
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
