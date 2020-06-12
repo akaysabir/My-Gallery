@@ -22,14 +22,14 @@ class ViewController: UIViewController {
   
   private lazy var myButton: UIButton = {
     let button = UIButton()
-    button.backgroundColor = .black
+    button.backgroundColor = .white
     button.setTitle("My Gallery", for: .normal)
-    button.setTitleColor(.white, for: .normal)
+    button.setTitleColor(.black, for: .normal)
     button.addTarget(self, action: #selector(didTapMyButton), for: .touchUpInside)
     button.translatesAutoresizingMaskIntoConstraints = false
     button.layer.cornerRadius = 15
-    button.layer.borderWidth = 5
-    button.layer.borderColor = UIColor.white.cgColor
+    button.layer.borderWidth = 2
+    button.layer.borderColor = UIColor.black.cgColor
     return button
   }()
   

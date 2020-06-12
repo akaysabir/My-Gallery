@@ -16,7 +16,7 @@ extension UICollectionViewCell {
   
 }
 
-class GalleryViewController: UIViewController {
+class GalleryViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
   // MARK: - Properties
   
@@ -27,6 +27,19 @@ class GalleryViewController: UIViewController {
     myLabel.text = "My Gallery"
     myLabel.translatesAutoresizingMaskIntoConstraints = false
     return myLabel
+  }()
+  
+  private lazy var addButton: UIButton = { //add photo button
+    let button = UIButton()
+    button.backgroundColor = .black
+    button.setTitle("add", for: .normal)
+    button.setTitleColor(.white, for: .normal)
+    button.addTarget(self, action: #selector(didTapMyButton), for: .touchUpInside)
+    button.translatesAutoresizingMaskIntoConstraints = false
+    button.layer.cornerRadius = 4
+    button.layer.borderWidth = 2
+    button.layer.borderColor = UIColor.white.cgColor
+    return button
   }()
   
   private lazy var myCollectionView: UICollectionView = {
@@ -76,7 +89,7 @@ class GalleryViewController: UIViewController {
   // MARK: - Setup
   
   private func configureSubviews() {
-    [myLabel, myCollectionView].forEach {
+    [myLabel, addButton, myCollectionView].forEach {
       view.addSubview($0)
     }
   }
@@ -86,6 +99,13 @@ class GalleryViewController: UIViewController {
     NSLayoutConstraint.activate([
       myLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       myLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+      
+      
+      addButton.leadingAnchor.constraint(equalTo: myLabel.trailingAnchor, constant: 48),
+      addButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+      addButton.widthAnchor.constraint(equalToConstant: 48),
+      addButton.heightAnchor.constraint(equalToConstant: 28),
+      
       
       myCollectionView.topAnchor.constraint(equalTo: myLabel.bottomAnchor, constant: 16),
       myCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
@@ -113,8 +133,47 @@ extension GalleryViewController: UICollectionViewDataSource {
     return cell ?? UICollectionViewCell()
   }
   
+  // -> adding new image
   
+  @objc private func didTapMyButton() {
+    
+    let imagePickerController = UIImagePickerController()
+    imagePickerController.delegate = self
+    
+    let actionSheet = UIAlertController(title: "Source", message: "Choose a source", preferredStyle: .actionSheet)
+    
+    actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (UIAlertAction) in
+      if UIImagePickerController.isSourceTypeAvailable(.camera) {
+        imagePickerController.sourceType = .camera
+        self.present(imagePickerController, animated: true, completion: nil)
+      } else {
+        print("camera not available")
+      }
+    }))
+    
+    actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (UIAlertAction) in
+      imagePickerController.sourceType = .photoLibrary
+      self.present(imagePickerController, animated: true, completion: nil)
+    }))
+    
+    actionSheet.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil ))
+    
+    self.present(actionSheet, animated: true, completion: nil)
+  }
   
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    let image = info[.originalImage] as! UIImage
+    
+    data.append(image)
+    myCollectionView.reloadData()
+    
+    picker.dismiss(animated: true, completion: nil)
+  }
+  
+  func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    picker.dismiss(animated: true, completion: nil)
+  }
+  // <-- end of adding new image
   
 }
 
